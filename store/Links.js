@@ -2,5 +2,5 @@ export default [
   { title: "Home", text: "Home" },
   { title: "Bio", text: "Bio" },
   { title: "Gallery", text: "Gallery" },
-  { title: "Register", text: "Register Photos" }
+  { title: "Pizza", text: "Pizza!" }
 ];
