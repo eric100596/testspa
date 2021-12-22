@@ -66,9 +66,22 @@ app.route("/pizzas").get((request, response) => {
 });
 app.post("/pizzas/:id", (request, response) => {
   const id = request.params.id;
-  response.status(418).json({
+  const body = request.body;
+  // if (id === "error") {
+  //   response.status(500).json({
+  //     message: "Failed",
+  //     error: "Because I said so!"
+  //   });
+  // } else {
+  //   response.json({
+  //     message: "Success",
+  //     pizza_id: id
+  //   });
+  // }
+  response.json({
     message: "Success",
-    pizzas_id: id
+    pizza_id: id,
+    pizza_body: body
   });
 });
 
