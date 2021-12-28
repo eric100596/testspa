@@ -21,6 +21,8 @@ const express = require("express");
 
 const mongoose = require("mongoose");
 
+const pizzas = require("./routers/pizzas");
+
 const app = express();
 
 dotenv.config();
@@ -42,14 +44,14 @@ const logging = (request, response, next) => {
 app.use(express.json());
 app.use(logging);
 
+app.use("/pizzas", pizzas);
+
 // Handle the request with HTTP GET method from http://localhost:4040/status
 app.get("/status", (request, response) => {
   // Create the headers for response by default 200
   // Create the response body
   // End and return the response
-  response.send(
-    JSON.stringify({ message: "Service healthy and THIS IS BEST!" })
-  );
+  response.send(JSON.stringify({ message: "Service healthy" }));
 });
 
 // app
@@ -67,35 +69,35 @@ app.get("/status", (request, response) => {
 //   response.send(JSON.stringify({ message: "Success" }));
 // });
 
-app.route("/pizzas").get((request, response) => {
-  response.send(
-    JSON.stringify({
-      size: "Large",
-      sauce: "Red",
-      toppings: ["Pepperoni"]
-    })
-  );
-});
-app.post("/pizzas/:id", (request, response) => {
-  const id = request.params.id;
-  const body = request.body;
-  // if (id === "error") {
-  //   response.status(500).json({
-  //     message: "Failed",
-  //     error: "Because I said so!"
-  //   });
-  // } else {
-  //   response.json({
-  //     message: "Success",
-  //     pizza_id: id
-  //   });
-  // }
-  response.json({
-    message: "Success",
-    pizza_id: id,
-    pizza_body: body
-  });
-});
+// app.route("/pizzas").get((request, response) => {
+//   response.send(
+//     JSON.stringify({
+//       size: "Large",
+//       sauce: "Red",
+//       toppings: ["Pepperoni"]
+//     })
+//   );
+// });
+// app.post("/pizzas/:id", (request, response) => {
+//   const id = request.params.id;
+//   const body = request.body;
+//   // if (id === "error") {
+//   //   response.status(500).json({
+//   //     message: "Failed",
+//   //     error: "Because I said so!"
+//   //   });
+//   // } else {
+//   //   response.json({
+//   //     message: "Success",
+//   //     pizza_id: id
+//   //   });
+//   // }
+//   response.json({
+//     message: "Success",
+//     pizza_id: id,
+//     pizza_body: body
+//   });
+// });
 
 // Tell the Express app to start listening
 // Let the humans know I am running and listening on 4040
